@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/*
+		 *	var和let的区别
+		 * 		1.let没有变量声明提升
+		 * 		2.let声明的变量只在所在的代码块有效
+		 * 		3.let不允许在相同作用域类重复声明同一个变量
+		 * 		4.不能再函数内部重新声明参数
+		 * */
+			console.log(lett);
+			var lett = 10; 
+			
+			/*
+			 *
+			 * for循环内部的变量i和循环变量i不在同一个作用域，有各自的单独作用域
+			 * */
+			for(let i = 0;i < 3;++i){
+				let i = "show";
+				console.log(i);	//循环输出3次
+			}
+			/*
+			 *	暂时性死区
+			 * 	存在全局变量tmp，但是在块级作用域内let又声明了一个局部变量tmp,导致后者绑定这个块级作用域
+			 * 		所以在let声明前，对tmp赋值会报错
+			 * */
+			
+			var tmp = 123;
+			if(tmp){
+				//tmp  = 'abc';	//报错
+				//typeof tmp;	//报错
+				let tmp;
+			}
+			console.log(typeof show);	//undefined
+			
+			/*
+			 *	如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭的作用域，凡是在一开始之前使用这些变量都会报错
+			 * 
+			 * */
+			/*----------*/
+			function bar(y = 2,x = y) {
+			  return [x, y];
+			}
+			
+			console.log(bar()); 	//[2,2]
+			
+			/*
+			 *	let不允许在相同作用域类重复声明一个变量
+			 * */
+			(function (){
+				let a = 10;	//报错，不能在相同作用域内重复声明同一个变量
+				//let a = 20;
+			})();
+			(function (){
+				var a = 10;	//报错
+				//let a = 20;
+			})();
+			
+			(function (arg){
+				//let arg;	//报错，不能再函数内部重新声明参数
+			})(10)
+			
+			function func(arg){
+				{
+					let arg;	//不报错
+				}
+			}
+		</script>
+	</body>
+</html>

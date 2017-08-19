@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 *	字符串的解构赋值，字符串也可以解构赋值，这是因为字符串被转换为一个类似数组的对象
+			 * */
+			let [a,b,c,d,e] = 'hello';	//字符串被转换为数组
+			console.log(a,b,c,d,e);	//h e l l o
+			//类似数组的对象还有一个length属性，因此还可以对这个属性进行解构赋值
+			let {length : len} = 'hello';
+			console.log(len);	//5
+		</script>
+	</body>
+</html>

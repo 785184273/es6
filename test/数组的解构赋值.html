@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 *	从数组和对象中提取值，对变量进行赋值，这被称为解构
+			 * 
+			 * */
+			//完全解构
+			let [a,b,c] = [1,2,3];
+			console.log(a + ',' + b + ',' + c + '\n');
+			let [foo,[[bar],baz]] = [1,[[2],3]];
+			console.log(foo + ',' + bar + ',' + baz + '\n');
+			
+			//如果解构不成功，变量的值就为undefined
+			let [show,the] = [1];
+			console.log(show + ',' + the);	//1,undefined
+			
+			//不完全解构
+			let [x,y] = [1,2,3];
+			console.log(x + ',' + y);	//1,2
+			
+			//如果等号的右边不是数组(或者严格的说不是可遍历的结构)，那么就会报错
+			//let [i] = 1;			//报错
+			//let [j] = false;		//报错
+			//let [k] = NaN;			//报错
+			//let [h] = undefined;	//报错
+			//let [u] = null;			//报错
+			//let [o] = {};			//报错
+			
+			//结构赋值允许指定默认值
+			let [s = true] = [];
+			console.log(s);				//true
+			let [e,r = 'b'] = ['a'];
+			console.log(e + ',' + r);	//a,b
+			let [d = 1] = [undefined];
+			console.log(d);				//1
+			
+			//注意：es6内部使用严格相等运算符(===),判断一个位置是否有值，如果一个数组成员不严格等于undefined,默认值是不会生效的，如果一个数组成员是null，默认值是不会生效的，因为null不严格等于undefined
+			let [f = 1] = [null];
+			console.log(f);				//null
+			
+			//表达式默认值
+			function test(){
+				return "showme";
+			}
+			let [m = test()] = [undefined];	
+			console.log(m);				//showme
+			
+			let [g = 1,t = g] = [];
+			console.log(g + "," + t);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 *	不能使用圆括号的情况
+			 * 		1.变量声明语句
+			 * 		2.函数参数
+			 * 		3.赋值语句的模式
+			 *	能使用圆括号的情况
+			 * 		1.赋值语句的非模式部分可以使用圆括号
+			 * */
+				//let [(a)] = [1];	//报错，变量声明语句不能使用圆括号
+				//function f([(a)]){}	//报错，函数参数不能使用圆括
+				//({p : a}) = {p : 42};	//报错，赋值语句的模式不能使用圆括号
+				
+				let a;
+				({a : (p)} = {a : 10});	//正确，赋值语句的非模式部分不会报错，a是模式，p不是
+				console.log(p);
+		</script>
+	</body>
+</html>

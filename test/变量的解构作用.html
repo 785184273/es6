@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 *	变量的解构赋值用途很多
+			 * 		1.交换变量的值
+			 * 		2.从函数返回多个值
+			 * 		3.函数参数的定义
+			 * 		4.提取json数据
+			 * 		5.函数参数的默认值
+			 * 		6.遍历map结构
+			 * 		7.输入模块的指定方法
+			 * */
+			
+			//交换变量的值
+			var x = 1;
+			var y = 2;
+			[x,y] = [y,x];
+			console.log(x,y);	//2 1
+			
+			//从函数返回多个值(返回一个数组)
+			function arr(){
+				return [1,2,3];
+			}
+			let [a,b,c] = arr();
+			console.log(a,b,c);	//1 2 3
+			
+			//从函数返回多个值(返回一个对象)
+			function obj(){
+				return {
+					foo : 1,
+					bar : 2
+				}
+			}
+			let {foo,bar} = obj();
+			console.log(foo,bar);	//1 2
+			
+			//函数参数的定义(参数是一组有次序的值)
+			function f([x,y,z]){
+				console.log(x,y,z);	//1 2 3
+			}
+			f([1,2,3]);
+			
+			//函数参数的定义(参数是一组无次序的值)
+			function fn({x,y,z}){
+				console.log(x,y,z);	//1 2 3
+			}
+			fn({z : 3,y : 2,x : 1});
+			
+			//提取json数据
+			let jsondata = {
+				id : 42,
+				status : "ok",
+				data : [123,233]
+			};
+			let {id,status,data : num} = jsondata;
+			console.log(id,status,num);	//42 "ok" [123,233]
+			
+			//函数参数的默认值
+			var test = function(url,{
+				async = true,
+				beforeSend = function (){},
+				cache = true,
+				complete = function (){},
+				crossDomain = false,
+				global = true
+				//......
+			}){
+				
+			}
+			
+			//输入模块的指定方法
+			//const {x,y} = require("source-map");
+		</script>
+	</body>
+</html>
